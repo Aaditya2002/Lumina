@@ -1,0 +1,582 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 30% 96%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 222 47% 11%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 335 78% 89%;
+    --secondary-foreground: 222 47% 11%;
+
+    --accent: 155 42% 88%;
+    --accent-foreground: 222 47% 11%;
+
+    --tertiary: 47 100% 85%;
+    --tertiary-foreground: 222 47% 11%;
+
+    --quaternary: 262 83% 90%;
+    --quaternary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222 47% 11%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Cursor */
+.cursor {
+  @apply fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50 mix-blend-difference;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-dot {
+  @apply fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-50 mix-blend-difference;
+  transform: translate(-50%, -50%);
+}
+
+/* Magnetic Button */
+.magnetic-button {
+  @apply relative inline-block cursor-none;
+}
+
+/* Hover Effects */
+.hover-reveal {
+  @apply absolute top-0 left-0 w-64 h-96 pointer-events-none opacity-0 z-10 overflow-hidden;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s ease;
+}
+
+.hover-reveal-inner {
+  @apply w-full h-full relative overflow-hidden;
+}
+
+.hover-reveal-img {
+  @apply w-full h-full object-cover absolute top-0 left-0;
+  transform: scale(1.1);
+  transition: transform 0.5s ease;
+}
+
+/* Marquee */
+.marquee {
+  @apply flex overflow-hidden whitespace-nowrap;
+}
+
+.marquee-content {
+  @apply flex whitespace-nowrap animate-marquee;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Staggered Grid */
+.staggered-grid {
+  @apply grid grid-cols-12 gap-4;
+}
+
+/* Preloader */
+.preloader {
+  @apply fixed inset-0 z-[9999] flex items-center justify-center bg-background;
+}
+
+.preloader-text {
+  @apply text-6xl md:text-8xl font-bold overflow-hidden;
+}
+
+.preloader-text span {
+  @apply inline-block;
+}
+
+/* Unique Content Card */
+.content-card {
+  @apply relative overflow-hidden rounded-2xl transition-all duration-500;
+}
+
+.content-card-inner {
+  @apply absolute inset-0 p-6 flex flex-col justify-end opacity-0 transition-opacity duration-500;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+}
+
+.content-card:hover .content-card-inner {
+  @apply opacity-100;
+}
+
+.content-card:hover img {
+  @apply scale-110;
+}
+
+.content-card-info {
+  @apply absolute inset-0 p-4 flex flex-col justify-end opacity-0 transition-opacity duration-300;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+}
+
+.content-card:hover .content-card-info {
+  @apply opacity-100;
+}
+
+.content-card-overlay {
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+}
+
+.content-card:hover .content-card-overlay {
+  @apply opacity-100;
+}
+
+/* Ensure homepage content card hover text is always white and visible */
+.content-card-inner, .content-card-inner * {
+  color: #fff !important;
+}
+
+/* Pastel Gradients */
+.pastel-gradient-1 {
+  background: linear-gradient(135deg, #ffd6e0 0%, #ffc9de 100%);
+}
+
+.pastel-gradient-2 {
+  background: linear-gradient(135deg, #c4f0c5 0%, #a5e6b3 100%);
+}
+
+.pastel-gradient-3 {
+  background: linear-gradient(135deg, #fff3c4 0%, #ffe8a3 100%);
+}
+
+.pastel-gradient-4 {
+  background: linear-gradient(135deg, #d8cfff 0%, #c5b6ff 100%);
+}
+
+.pastel-gradient-5 {
+  background: linear-gradient(135deg, #c4e0ff 0%, #a3d0ff 100%);
+}
+
+/* Animated Shapes */
+.animated-shape {
+  @apply absolute rounded-full opacity-70 blur-xl;
+  animation: float 15s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(5%, 5%) rotate(5deg);
+  }
+  50% {
+    transform: translate(0, 10%) rotate(0deg);
+  }
+  75% {
+    transform: translate(-5%, 5%) rotate(-5deg);
+  }
+}
+
+/* Unique Navigation */
+.circular-nav {
+  @apply fixed right-10 bottom-10 w-16 h-16 rounded-full z-40;
+}
+
+.circular-nav-toggle {
+  @apply absolute inset-0 rounded-full flex items-center justify-center cursor-pointer z-10;
+}
+
+.circular-nav-menu {
+  @apply absolute w-64 h-64 rounded-full -top-24 -left-24 z-0;
+  transform: scale(0);
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.circular-nav.active .circular-nav-menu {
+  transform: scale(1);
+}
+
+.circular-nav-item {
+  @apply absolute w-12 h-12 rounded-full flex items-center justify-center;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  @apply fixed top-0 left-0 h-1 bg-secondary z-50;
+  width: 0%;
+}
+
+/* Horizontal Scroll Section */
+.horizontal-scroll-section {
+  @apply relative h-screen overflow-hidden;
+}
+
+.horizontal-scroll-container {
+  @apply absolute top-0 left-0 h-full flex;
+  transition: transform 0.5s ease;
+}
+
+.horizontal-scroll-item {
+  @apply h-full flex-shrink-0;
+}
+
+/* Animated Text */
+.animated-text {
+  @apply relative inline-block overflow-hidden;
+}
+
+.animated-text-inner {
+  @apply inline-block;
+  animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@keyframes reveal {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Unique Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Font Styles */
+.font-space {
+  font-family: var(--font-space);
+}
+
+.font-outfit {
+  font-family: var(--font-outfit);
+}
+
+/* Unique Video Player */
+.video-player {
+  @apply relative overflow-hidden rounded-3xl;
+}
+
+.video-player-controls {
+  @apply absolute bottom-0 left-0 right-0 p-6 opacity-0 transition-opacity duration-300;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+}
+
+.video-player:hover .video-player-controls {
+  @apply opacity-100;
+}
+
+/* Unique Progress Bar */
+.progress-bar {
+  @apply relative h-1 bg-muted overflow-hidden rounded-full;
+}
+
+.progress-bar-fill {
+  @apply absolute top-0 left-0 h-full transition-all duration-300 ease-out;
+}
+
+/* Unique Loader */
+.loader {
+  @apply relative w-16 h-16;
+}
+
+.loader-circle {
+  @apply absolute w-full h-full rounded-full border-4 border-t-transparent animate-spin;
+}
+
+/* Unique Tabs */
+.unique-tabs {
+  @apply flex gap-2 overflow-x-auto pb-2;
+}
+
+.unique-tab {
+  @apply px-6 py-3 rounded-full transition-all duration-300 whitespace-nowrap;
+}
+
+.unique-tab.active {
+  @apply bg-secondary text-secondary-foreground;
+}
+
+/* Unique Tooltip */
+.unique-tooltip {
+  @apply absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg opacity-0 transition-opacity duration-300 text-sm;
+}
+
+.unique-tooltip-trigger:hover .unique-tooltip {
+  @apply opacity-100;
+}
+
+/* Unique Badge */
+.unique-badge {
+  @apply inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+/* Unique Switch */
+.unique-switch {
+  @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.unique-switch-thumb {
+  @apply pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0;
+}
+
+/* Unique Slider */
+.unique-slider {
+  @apply relative flex w-full touch-none select-none items-center;
+}
+
+.unique-slider-track {
+  @apply relative h-2 w-full grow overflow-hidden rounded-full bg-muted;
+}
+
+.unique-slider-range {
+  @apply absolute h-full bg-primary;
+}
+
+.unique-slider-thumb {
+  @apply block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+}
+
+/* Unique Input */
+.unique-input {
+  @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+/* Unique Button */
+.unique-button {
+  @apply inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+}
+
+/* Unique Card */
+.unique-card {
+  @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+}
+
+.unique-card-header {
+  @apply flex flex-col space-y-1.5 p-6;
+}
+
+.unique-card-title {
+  @apply text-2xl font-semibold leading-none tracking-tight;
+}
+
+.unique-card-description {
+  @apply text-sm text-muted-foreground;
+}
+
+.unique-card-content {
+  @apply p-6 pt-0;
+}
+
+.unique-card-footer {
+  @apply flex items-center p-6 pt-0;
+}
+
+/* Unique Avatar */
+.unique-avatar {
+  @apply relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full;
+}
+
+.unique-avatar-image {
+  @apply aspect-square h-full w-full;
+}
+
+.unique-avatar-fallback {
+  @apply flex h-full w-full items-center justify-center rounded-full bg-muted;
+}
+
+/* Unique Dialog */
+.unique-dialog-overlay {
+  @apply fixed inset-0 z-50 bg-background/80 backdrop-blur-sm;
+}
+
+.unique-dialog-content {
+  @apply fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg;
+}
+
+.unique-dialog-header {
+  @apply flex flex-col space-y-1.5 text-center sm:text-left;
+}
+
+.unique-dialog-footer {
+  @apply flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2;
+}
+
+.unique-dialog-title {
+  @apply text-lg font-semibold leading-none tracking-tight;
+}
+
+.unique-dialog-description {
+  @apply text-sm text-muted-foreground;
+}
+
+/* Unique Dropdown Menu */
+.unique-dropdown-menu {
+  @apply z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md;
+}
+
+.unique-dropdown-menu-item {
+  @apply relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground;
+}
+
+.unique-dropdown-menu-checkbox {
+  @apply mr-2 h-4 w-4;
+}
+
+.unique-dropdown-menu-label {
+  @apply px-2 py-1.5 text-sm font-semibold;
+}
+
+.unique-dropdown-menu-separator {
+  @apply -mx-1 my-1 h-px bg-muted;
+}
+
+.unique-dropdown-menu-shortcut {
+  @apply ml-auto text-xs tracking-widest opacity-60;
+}
+
+/* Unique Label */
+.unique-label {
+  @apply text-sm font-medium leading-none disabled:cursor-not-allowed disabled:opacity-70;
+}
+
+/* Unique Navigation Menu */
+.unique-navigation-menu {
+  @apply relative z-10 flex max-w-max flex-1 items-center justify-center;
+}
+
+.unique-navigation-menu-list {
+  @apply flex flex-1 list-none items-center justify-center space-x-1;
+}
+
+.unique-navigation-menu-trigger {
+  @apply inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50;
+  /* @apply group; */
+}
+
+.unique-navigation-menu-content {
+  @apply left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto;
+}
+
+.unique-navigation-menu-link {
+  @apply block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground;
+}
+
+/* Unique Progress */
+.unique-progress {
+  @apply relative h-4 w-full overflow-hidden rounded-full bg-muted;
+}
+
+.unique-progress-indicator {
+  @apply h-full w-full flex-1 bg-primary transition-all;
+}
+
+/* Unique Select */
+.unique-select {
+  @apply flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.unique-select-trigger {
+  @apply flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.unique-select-content {
+  @apply relative z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md;
+}
+
+.unique-select-item {
+  @apply relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
+}
+
+/* Unique Tabs */
+.unique-tabs {
+  @apply inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground;
+}
+
+.unique-tabs-list {
+  @apply inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground;
+}
+
+.unique-tabs-trigger {
+  @apply inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm;
+}
+
+.unique-tabs-content {
+  @apply mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+}
+
+/* Unique Toast */
+.unique-toast {
+  @apply pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all;
+}
+
+.unique-toast-title {
+  @apply text-sm font-semibold;
+}
+
+.unique-toast-description {
+  @apply text-sm opacity-90;
+}
+
+.unique-toast-action {
+  @apply inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+}
+
+.unique-toast-close {
+  @apply absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100;
+}
+
+.unique-toaster {
+  @apply fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px];
+}
+
+/* Unique Switch */
+.unique-switch {
+  @apply  inline-flex h-[24px] w-[44px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input;
+}
+
+.unique-switch-thumb {
+  @apply pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0;
+}
