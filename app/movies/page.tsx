@@ -176,6 +176,61 @@ export default function MoviesPage() {
                   {newReleases
                     .filter(c => c.type === "movie")
                     .map(content => (
-                      <motion.div
+                      <motion.div 
+                        key={content.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="content-card"
+                      >
+                        <div className="aspect-[2/3] rounded-lg overflow-hidden">
+                          <img 
+                            src={content.posterUrl}
+                            alt={content.title} 
+                            className="w-full h-full object-cover rounded-lg"
+                          />
+                        </div>
+                        <div className="mt-2">
+                          <h3 className="font-medium text-sm line-clamp-1">{content.title}</h3>
+                          <p className="text-xs text-muted-foreground">{content.year}</p>
+                        </div>
+                      </motion.div>
+                    ))}
+                </div>
+              </TabsContent>
+              <TabsContent value="top" className="pt-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+                  {topRated
+                    .filter(c => c.type === "movie")
+                    .map(content => (
+                      <motion.div 
+                        key={content.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="content-card"
+                      >
+                        <div className="aspect-[2/3] rounded-lg overflow-hidden">
+                          <img 
+                            src={content.posterUrl}
+                            alt={content.title} 
+                            className="w-full h-full object-cover rounded-lg"
+                          />
+                        </div>
+                        <div className="mt-2">
+                          <h3 className="font-medium text-sm line-clamp-1">{content.title}</h3>
+                          <p className="text-xs text-muted-foreground">{content.year}</p>
+                        </div>
+                      </motion.div>
+                    ))}
+                </div>
+              </TabsContent>
+            </Tabs>
+          </motion.div>
+        </div>
+      </main>
+    </div>
+  )
+}
 
 \
